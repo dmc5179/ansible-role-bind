@@ -1,15 +1,4 @@
 ---
-# tasks file for install_bind
-# Initialise distribution-specific variables
-#- name: Source specific variables
-#  include_vars: "{{ item }}"
-#  with_first_found:
-#    - "{{ ansible_distribution }}.yml"
-#    - "{{ ansible_os_family }}.yml"
-#  tags:
-#    - bind
-#    - pretask
-
 - name: Check whether `bind_zone_master_server_ip` was set
   assert:
     that: bind_zone_master_server_ip is defined
@@ -86,7 +75,7 @@
 - name: Start BIND service
   service:
     name: "{{ bind_service }}"
-    state: started
+    state: restarted
     enabled: true
   tags:
     - bind
