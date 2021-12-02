@@ -1,2 +1,7 @@
 ---
 # handlers file for install_bind
+
+- name: reload bind
+  ansible.builtin.systemd:
+    name: named
+    state: reloaded
